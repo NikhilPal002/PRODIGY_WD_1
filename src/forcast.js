@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { useState, Component, useEffect } from 'react'
 import axios from "axios";
 import apiKeys from './apiKeys';
 import ReactAnimatedWeather from "react-animated-weather";
@@ -14,6 +14,30 @@ function Forcast(props) {
         size: 112,
         animate: true,
     };
+
+    const search = (city) => {
+        axios.get(`${apiKeys.base}weather?q=${city != "[object Object]" ? city : query}&units=metric&AppID=${apiKeys.key}`)
+            .then((response) => {
+                setWeather(response.data);
+                setQuery("");
+            }).catch(function (err) {
+                console.log(error);
+                setWeather("");
+                setQuery("");
+                setError({ message: "Not Found", query: query });
+            });
+    };
+
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+
+    useEffect(() => {
+    search("Mumbai");
+    }, []);
 
     return (
         <div className='forecast'>
@@ -35,8 +59,8 @@ function Forcast(props) {
                         value={query} />
                     <div className='img-box'>
                         {" "}
-                        {/* <img src=''
-                            onClick={search} /> */}
+                        <img src=''
+                            onClick={search} />
                     </div>
                 </div>
                 <ul>
