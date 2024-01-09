@@ -6,7 +6,6 @@ function App() {
   return (
     <React.Fragment>
       <div className="container">
-        <h1> Hello World!</h1>
         <CurrentLocation />
       </div>
     </React.Fragment>

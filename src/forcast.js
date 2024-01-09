@@ -16,9 +16,8 @@ function Forcast(props) {
     };
 
     const search = (city) => {
-        axios.get( `${apiKeys.base}weather?q=${
-            city != "[object Object]" ? city : query
-          }&units=metric&APPID=${apiKeys.key}`)
+        axios.get(`${apiKeys.base}weather?q=${city != "[object Object]" ? city : query
+            }&units=metric&APPID=${apiKeys.key}`)
             .then((response) => {
                 setWeather(response.data);
                 setQuery("");
@@ -38,28 +37,30 @@ function Forcast(props) {
     }
 
     useEffect(() => {
-    search("Mumbai");
+        search("Mumbai");
     }, []);
 
     return (
-        <div className='forecast'>
-            <div className='forecast-icon'>
+        <div className="forecast">
+            <div className="forecast-icon">
                 <ReactAnimatedWeather
                     icon={props.icon}
-                    color={props.color}
-                    size={props.size}
+                    color={defaults.color}
+                    size={defaults.size}
                     animate={defaults.animate}
                 />
             </div>
-            <div className='today-weather'>
-                <h3> {props.weather} </h3>
-                <div className='search-box'>
-                    <input type="text"
-                        className='search-box'
-                        placeholder='search any city'
+            <div className="today-weather">
+                <h3>{props.weather}</h3>
+                <div className="search-box">
+                    <input
+                        type="text"
+                        className="search-bar"
+                        placeholder="Search any city"
                         onChange={(e) => setQuery(e.target.value)}
-                        value={query} />
-                    <div className='img-box'>
+                        value={query}
+                    />
+                    <div className="img-box">
                         {" "}
                         <img
                             src="https://images.avishkaar.cc/workflow/newhp/search-white.png"

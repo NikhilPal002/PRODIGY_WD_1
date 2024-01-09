@@ -2,6 +2,7 @@ import React from 'react'
 import apiKeys from "./apiKeys";
 import Clock from "react-live-clock";
 import Forcast from './forcast';
+import loader from "./images/WeatherIcons.gif";
 import ReactAnimatedWeather from "react-animated-weather";
 
 const dateBuilder = (d) => {
@@ -144,22 +145,22 @@ class weather extends React.Component {
     if (this.state.temperatureC) {
       return (
         <React.Fragment>
-          <div className='city'>
-            <div className='title'>
+          <div className="city">
+            <div className="title">
               <h2>{this.state.city}</h2>
-              <h3>{this.state.country} </h3>
+              <h3>{this.state.country}</h3>
             </div>
-            <div className='mb-icon'>
+            <div className="mb-icon">
               {" "}
               <ReactAnimatedWeather
                 icon={this.state.icon}
-                color={this.state.color}
-                size={this.state.size}
+                color={defaults.color}
+                size={defaults.size}
                 animate={defaults.animate}
               />
-              <p>{this.state.main} </p>
+              <p>{this.state.main}</p>
             </div>
-            <div className='date-time'>
+            <div className="date-time">
               <div className="dmy">
                 <div id="txt"></div>
                 <div className="current-time">
@@ -167,10 +168,12 @@ class weather extends React.Component {
                 </div>
                 <div className="current-date">{dateBuilder(new Date())}</div>
               </div>
-              <div className='temperature'>
+              <div className="temperature">
                 <p>
                   {this.state.temperatureC}°<span>C</span>
                 </p>
+                {/* <span className="slash">/</span>
+                {this.state.temperatureF} &deg;F */}
               </div>
             </div>
           </div>
@@ -180,6 +183,7 @@ class weather extends React.Component {
     } else {
       return (
         <React.Fragment>
+          <img src={loader} style={{ width: "50%", WebkitUserDrag: "none" }} />
           <h3 style={{ color: "white", fontSize: "22px", fontWeight: "600" }}>
             Detecting your location
           </h3>
@@ -190,7 +194,6 @@ class weather extends React.Component {
         </React.Fragment>
       );
     }
-
   }
 }
 
