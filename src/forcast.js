@@ -16,7 +16,9 @@ function Forcast(props) {
     };
 
     const search = (city) => {
-        axios.get(`${apiKeys.base}weather?q=${city != "[object Object]" ? city : query}&units=metric&AppID=${apiKeys.key}`)
+        axios.get( `${apiKeys.base}weather?q=${
+            city != "[object Object]" ? city : query
+          }&units=metric&APPID=${apiKeys.key}`)
             .then((response) => {
                 setWeather(response.data);
                 setQuery("");
@@ -59,8 +61,10 @@ function Forcast(props) {
                         value={query} />
                     <div className='img-box'>
                         {" "}
-                        <img src=''
-                            onClick={search} />
+                        <img
+                            src="https://images.avishkaar.cc/workflow/newhp/search-white.png"
+                            onClick={search}
+                        />
                     </div>
                 </div>
                 <ul>
