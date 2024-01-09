@@ -1,4 +1,7 @@
 import React from 'react'
+import apiKeys from "./apiKeys";
+import Clock from "react-live-clock";
+import ReactAnimatedWeather from "react-animated-weather";
 
 class weather extends React.Component {
 
@@ -16,6 +19,20 @@ class weather extends React.Component {
     else{
       alert("Geolocation is not available");
     }
+    
+    this.timerID = setInterval(() => this.getWeather(this.state.lat, this.state.lon),
+    600000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  getPosition = (options) =>{
+    return new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
   }
 
   render() {
