@@ -1,6 +1,7 @@
 import React from 'react'
 import apiKeys from "./apiKeys";
 import Clock from "react-live-clock";
+import Forcast from './forcast';
 import ReactAnimatedWeather from "react-animated-weather";
 
 const dateBuilder = (d) => {
@@ -141,6 +142,7 @@ class weather extends React.Component {
               </div>
             </div>
           </div>
+          <Forcast icon={this.state.icon} weather={this.state.main} />
         </React.Fragment>
       );
     } else {
